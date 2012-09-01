@@ -22,10 +22,15 @@
 "<leader>we     get weather like
 "
 "======NMap=====
-"<CTRL-S>       save current buffer
+"<CTRL-s>       save current buffer
+"<CTRL-n>       next window
+"<CTRL-p>       previous window
+"<leader>v      voom
+"<leader>w      dictionary current word by sdcv (a wrapper of stardict)
+"ca             calendar
 "
 "======IMap=====
-"<CTRL-S>       save current buffer
+"<CTRL-s>       save current buffer
 
 "======CMap=====
 ":Lucky         show today's fortune of your constellation
