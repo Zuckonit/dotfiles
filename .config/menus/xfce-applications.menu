@@ -1,0 +1,40 @@
+<!DOCTYPE Menu
+  PUBLIC '-//freedesktop//DTD Menu 1.0//EN'
+  'http://standards.freedesktop.org/menu-spec/menu-1.0.dtd'>
+<Menu>
+	<Name>Xfce</Name>
+	<MergeFile type="parent">/etc/xdg/xdg-xubuntu/menus/xfce-applications.menu</MergeFile>
+	<Menu>
+		<Name>Accessories</Name>
+		<AppDir>/home/mocker/.local/share/applications</AppDir>
+		<Exclude>
+			<Filename>xfce4-about.desktop</Filename>
+		</Exclude>
+	</Menu>
+	<Menu>
+		<Name>Other</Name>
+		<Exclude>
+			<Filename>alacarte-made-4.desktop</Filename>
+		</Exclude>
+		<AppDir>/home/mocker/.local/share/applications</AppDir>
+	</Menu>
+	<Menu>
+		<Name>System</Name>
+		<AppDir>/home/mocker/.local/share/applications</AppDir>
+		<Include>
+			<Filename>synaptic.desktop</Filename>
+		</Include>
+		<Include>
+			<Filename>usb-creator-gtk.desktop</Filename>
+		</Include>
+		<Include>
+			<Filename>xfce4-taskmanager.desktop</Filename>
+		</Include>
+	</Menu>
+	<Menu>
+		<Name>Network</Name>
+		<Include>
+			<Filename>alacarte-made-5.desktop</Filename>
+		</Include>
+	</Menu>
+</Menu>

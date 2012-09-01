@@ -1,0 +1,2 @@
+convGui2term.sh is a shell wrapper of gui2term.py
+Before your running , edit it and change the theme_path as yours

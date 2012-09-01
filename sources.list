@@ -1,0 +1,12 @@
+deb http://ubuntu.cn99.com/ubuntu/ lucid main universe restricted multiverse
+deb-src http://ubuntu.cn99.com/ubuntu/ lucid main universe restricted multiverse
+deb http://ubuntu.cn99.com/ubuntu/ lucid-security universe main multiverse restricted
+deb-src http://ubuntu.cn99.com/ubuntu/ lucid-security universe main multiverse restricted
+deb http://ubuntu.cn99.com/ubuntu/ lucid-updates universe main multiverse restricted
+deb http://ubuntu.cn99.com/ubuntu/ lucid-proposed universe main multiverse restricted
+deb-src http://ubuntu.cn99.com/ubuntu/ lucid-proposed universe main multiverse restricted
+deb http://ubuntu.cn99.com/ubuntu/ lucid-backports universe main multiverse restricted
+deb-src http://ubuntu.cn99.com/ubuntu/ lucid-backports universe main multiverse restricted
+deb-src http://ubuntu.cn99.com/ubuntu/ lucid-updates universe main multiverse restricted
+deb http://www.geekconnection.org/remastersys/repository karmic/
+deb http://ppa.launchpad.net/happyaron/ppa/ubuntu lucid main

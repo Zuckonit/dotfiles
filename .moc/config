@@ -1,0 +1,8 @@
+ReadTags = no
+Sort = FileName
+ShowStreamErrors = no
+Repeat = yes
+PlaylistFullPaths = no
+SavePlaylist = yes
+AutoNext = yes
+Theme = transparent-background

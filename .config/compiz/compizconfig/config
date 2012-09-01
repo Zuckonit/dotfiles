@@ -1,0 +1,8 @@
+[gnome_session]
+profile = 
+plugin_list_autosort = true
+
+[general]
+profile = 
+plugin_list_autosort = true
+
