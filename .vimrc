@@ -640,8 +640,8 @@ map <leader>we :call Weather()<CR>
 
 
 "115 lottery
-let g:yao115_usr_list=['sin90@foxmail.com','lsin30@foxmail.com','1968576507@qq.com']
-let g:yao115_pwd_list=['yang3136299','yang3136299','yang123']
+let g:yao115_usr_list=['','']
+let g:yao115_pwd_list=['','']
 map <leader>yao :call Yao115()<CR>
 
 "google.vim
@@ -651,8 +651,8 @@ map <leader>ggs :call GoogleBySelect()<CR>
 
 "email.vim
 let g:email_host='smtp.qq.com'
-let g:email_usr ='lsin30@foxmail.com'
-let g:email_pwd ='Zicer3136299.cn'
+let g:email_usr = ''
+let g:email_pwd = ''
 
 "lucky-today
 let g:lucky_your_constellation="天秤"
