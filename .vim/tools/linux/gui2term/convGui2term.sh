@@ -12,7 +12,7 @@
 #-------------------------------------
 #*/
 
-theme_path="$HOME/.vim/colors/" #change as your theme_path
+theme_path="$HOME/.vim/colors/"
 if [ -d $theme_path ]; then
     themes=$(ls $theme_path)
 fi

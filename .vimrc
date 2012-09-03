@@ -5,7 +5,7 @@
 "        Email: Zuckerwooo@gmail.com
 "     HomePage: zuckonit.github.com
 "      Version: 0.0.2
-"   LastChange: 2012-08-31 01:32:46
+"   LastChange: 2012-09-03 17:18:35
 "      History: rewrite this file and use vundle as a management tool
 "=============================================================================
 
@@ -16,21 +16,23 @@
 "<Tab>          shift right
 "<Shift-Tab>    shift left
 "<leader>gg     google current word
-"<leader>ggl    google current line
 "<leader>ggs    google current select
-"<leader>yao    get more space of 115 netdisk everyday
-"<leader>we     get weather like
 "
 "======NMap=====
-"<CTRL-s>       save current buffer
-"<CTRL-n>       next window
-"<CTRL-p>       previous window
-"<leader>v      voom
-"<leader>w      dictionary current word by sdcv (a wrapper of stardict)
-"ca             calendar
+"<CTRL-S>       save current buffer
+"<Shift-F8>     indent your code
+"<leader>ggl    google current line
+"<leader>yao    get more space of 115 netdisk everyday
+"<leader>we     get weather like
+"<leader>sp     horizon slipt current window
+"<leader>vsp    vertical split current window
+"
 "
 "======IMap=====
-"<CTRL-s>       save current buffer
+"<CTRL-S>       save current buffer
+"<CTRL-J>       you can both use <Tab> and <Ctrl-j> to trigger snipmate,
+"               you can take which as a solution of conflict between snipMate
+"               and Pydiction
 
 "======CMap=====
 ":Lucky         show today's fortune of your constellation
@@ -47,9 +49,22 @@
 "
 
 
+"----------------------------------------------------
+"              your need install at first
+"----------------------------------------------------
+"======Linux====
+"wmctrl        maximize gvim window
+"astyle        indent your code
+"sdcv          use stardict in vim
+"ctags         ctags
+"cscope        cscope
 
-
-
+"======Windows==
+"mingw         use gcc/g++ in windows
+"
+"as for others :
+"              just set the ./tools/windows directory
+"              into your environment
 
 
 "----------------------------------------------------
@@ -102,6 +117,8 @@ Bundle 'thinca/vim-quickrun'
 Bundle 'vim-scripts/AutoComplPop'
 Bundle 'vim-scripts/sudo.vim'
 Bundle 'ervandew/supertab'
+Bundle 'vim-scripts/DoxygenToolkit.vim.git'
+"Bundle 'tyru/open-browser.vim'
 Bundle 'gmarik/github-search.vim'
 let g:github_search_path_format = '~/gitProjects/:repo'
 
@@ -149,6 +166,7 @@ set number
 set ruler
 set magic
 set cursorline
+hi cursorline guibg=NONE gui=underline
 set cursorcolumn
 hi cursorline guibg=NONE gui=underline
 set t_Co=256
@@ -156,13 +174,16 @@ set ambiwidth=double
 set autochdir
 set showmatch
 set hidden
-
+set winaltkeys=no
 set iskeyword+=_,$,@,%,#,-
 
 "colorscheme
-colorscheme solarized
-let g:solarized_termcolors=256
 set background=dark
+if g:isguiruning==1
+    colorscheme ir_black
+else
+    colorscheme ir_black_term
+endif
 "colorscheme ir_black_term
 "colorscheme ingretu
 
@@ -266,7 +287,7 @@ au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|
 "need not restart vim when you modify the config
 "if iswindows==0
     "autocmd! BufWritePost .vimrc source %
-"elseif
+"else
     "autocmd! BufWritePost _vimrc source %
 "endif
 
@@ -326,18 +347,56 @@ endif
 nmap <silent> <C-n> :tabn<CR>
 nmap <silent> <C-p> :tabp<CR>
 
-"split window
-"nmap <silent> <C-s-e> :split<CR>
-"nmap <silent> <C-s-o> :vsplit<CR>
-
 
 au BufRead,BufNewFile {*.md,*.mkd,*.markdown}  set ft=markdown
+
+"split
+map <leader>sp :split<CR>
+map <leader>vsp :vsplit<CR>
+
 "----------------------------------------------------
 "                    indent
 "----------------------------------------------------
 autocmd Filetype c set equalprg=cindent
 set smartindent
 set autoindent
+
+"use astyle to indent your code
+"support c,cpp,perl,python,java,jsp,xml,html,htm
+"so , install astyle at first
+map <S-F8> :call FormartSrc()<CR>
+
+func FormartSrc()
+    exec "w"
+    if &filetype == 'c'
+        exec "!astyle % –style=ansi –suffix=none %"
+        exec "e! %"
+    elseif &filetype == 'cpp'
+        "exec "!astyle % –style=ansi –suffix=none %"
+        "exec "e! %"
+    elseif &filetype == 'perl'
+        exec "!astyle –style=gnu –suffix=none %"
+        exec "e! %"
+    elseif &filetype == 'py'
+        exec "!astyle –style=gnu –suffix=none %"
+        exec "e! %"
+    elseif &filetype == 'java'
+        exec "!astyle –style=java –suffix=none %"
+        exec "e! %"
+    elseif &filetype == 'jsp'
+        exec "!astyle –style=gnu –suffix=none %"
+        exec "e! %"
+    elseif &filetype == 'xml'
+        exec "!astyle –style=gnu –suffix=none %"
+        exec "e! %"
+    elseif &filetype == 'html'
+        exec "!astyle –style=gnu –suffix=none %"
+        exec "e! %"
+    elseif &filetype == 'htm'
+        exec "!astyle –style=gnu –suffix=none %"
+        exec "e! %"
+    endif
+endfunc
 
 
 
@@ -348,12 +407,30 @@ set autoindent
 "Nerdcommenter
 let NERDShutUp=1
 
+"change snipMate hotkey as Ctrl+Tab
+ino <c-j> <c-r>=TriggerSnippet()<cr>
+snor <c-j> <esc>i<right><c-r>=TriggerSnippet()<cr>
+
 "Quickrun
-map <F5> :call QuickRun()<CR>
+map <F5> :QuickRun<CR>
+let g:quickrun_config = {}
+let g:quickrun_config.html = {'command':'gnome-open'}
+let g:quickrun_config.tex  = {'command':'pdflatex'}
 
 "supertab
 let g:SuperTabRetainCompletionType=2
 let g:SuperTabDefaultCompletionType="<C-X><C-O>"
+
+"DoxygenToolkit
+let g:DoxygenToolkit_authorName="Mocker, http://zuckonit.github.com"
+let s:licenseTag = "Copyright(C)\<enter>"
+"let s:licenseTag = s:licenseTag . "For free\<enter>"
+"let s:licenseTag = s:licenseTag . "All right reserved\<enter>"
+"let g:DoxygenToolkit_licenseTag = s:licenseTag
+let g:DoxygenToolkit_briefTag_funcName="yes"
+let g:doxygen_enhanced_color=1
+
+
 
 "zencoding
 let g:user_zen_settings = {
@@ -563,8 +640,8 @@ map <leader>we :call Weather()<CR>
 
 
 "115 lottery
-let g:yao115_usr_list=['','']
-let g:yao115_pwd_list=['','']
+let g:yao115_usr_list=['sin90@foxmail.com','lsin30@foxmail.com','1968576507@qq.com']
+let g:yao115_pwd_list=['yang3136299','yang3136299','yang123']
 map <leader>yao :call Yao115()<CR>
 
 "google.vim
@@ -574,9 +651,8 @@ map <leader>ggs :call GoogleBySelect()<CR>
 
 "email.vim
 let g:email_host='smtp.qq.com'
-let g:email_usr =''
-let g:email_pwd =''
-map <leader>emt :call SendTextmail()<CR>
+let g:email_usr ='lsin30@foxmail.com'
+let g:email_pwd ='Zicer3136299.cn'
 
 "lucky-today
 let g:lucky_your_constellation="天秤"
